@@ -2,9 +2,10 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Gigabyte VPN · Приватность как код</title>
   <meta name="description" content="Gigabyte VPN — децентрализованный доступ. VLESS Reality. Никаких логов. Ваше дело — ваше.">
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,7 +19,6 @@
 
     html {
       scroll-behavior: smooth;
-      /* Скрываем скроллбар */
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
@@ -33,11 +33,84 @@
       color: #E5E5E7;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      overflow-x: auto;
+      overflow-x: hidden;
+      min-width: 100%;
+      position: relative;
     }
 
-    /* Фон с пятнами кода / шифрования / анонимности */
-    .bg-crypto {
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    /* Фоновый терминал MacBook */
+    .bg-terminal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1000px;
+      max-width: 90vw;
+      background: rgba(18, 18, 22, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.9;
+      font-size: 13px;
+      padding: 20px;
+      color: #0A84FF;
+      text-shadow: 0 0 8px rgba(10, 132, 255, 0.5);
+    }
+
+    .terminal-header {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      opacity: 0.8;
+    }
+
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #FF5F56; }
+    .dot-yellow { background: #FFBD2E; }
+    .dot-green { background: #27C93F; }
+
+    .terminal-content {
+      white-space: pre-wrap;
+      line-height: 1.7;
+      font-family: inherit;
+    }
+
+    .terminal-line {
+      margin-bottom: 6px;
+    }
+
+    .prompt {
+      color: #27C93F;
+    }
+
+    .command {
+      color: #0A84FF;
+    }
+
+    .output {
+      color: #A0C8FF;
+      opacity: 0.8;
+    }
+
+    .comment {
+      color: #6C6C74;
+    }
+
+    /* Дополнительные полупрозрачные пятна */
+    .bg-crypto-spot {
       position: fixed;
       top: 0;
       left: 0;
@@ -45,90 +118,16 @@
       height: 100%;
       z-index: 0;
       pointer-events: none;
-      font-family: inherit;
-      font-size: 16px;
-      color: rgba(10, 132, 255, 0.25);
-      white-space: pre-wrap;
-      overflow: hidden;
+      opacity: 0.12;
     }
 
-    .bg-crypto span {
+    .bg-crypto-spot span {
       position: absolute;
       display: block;
-      opacity: 0.6;
-      filter: blur(1.5px);
-      user-select: none;
-      font-weight: 500;
-    }
-
-    /* Пятна */
-    .bg-crypto .crypto1 {
-      top: 8%;
-      left: 2%;
-      font-size: 28px;
-      transform: rotate(-5deg);
       color: #0A84FF;
-      text-shadow: 0 0 15px #0A84FF;
-    }
-    .bg-crypto .crypto2 {
-      top: 20%;
-      right: 5%;
-      font-size: 22px;
-      transform: rotate(8deg);
-      color: #5E5CE6;
-      opacity: 0.5;
-    }
-    .bg-crypto .crypto3 {
-      bottom: 15%;
-      left: 8%;
-      font-size: 32px;
-      transform: rotate(-12deg);
-      color: #0A84FF;
-      text-shadow: 0 0 20px #0A84FF;
-    }
-    .bg-crypto .crypto4 {
-      top: 45%;
-      left: 15%;
-      font-size: 18px;
-      transform: rotate(3deg);
-      color: #A0C8FF;
-    }
-    .bg-crypto .crypto5 {
-      bottom: 30%;
-      right: 10%;
-      font-size: 26px;
-      transform: rotate(-7deg);
-      color: #5E5CE6;
-      text-shadow: 0 0 15px #5E5CE6;
-    }
-    .bg-crypto .crypto6 {
-      top: 60%;
-      left: 25%;
-      font-size: 24px;
-      transform: rotate(10deg);
-      color: #0A84FF;
-    }
-    .bg-crypto .crypto7 {
-      top: 75%;
-      left: 60%;
-      font-size: 30px;
-      transform: rotate(-3deg);
-      color: #A0C8FF;
-      text-shadow: 0 0 25px #0A84FF;
-    }
-    .bg-crypto .crypto8 {
-      top: 5%;
-      left: 70%;
       font-size: 20px;
-      transform: rotate(15deg);
-      color: #5E5CE6;
-    }
-    .bg-crypto .crypto9 {
-      bottom: 5%;
-      left: 40%;
-      font-size: 28px;
+      filter: blur(2px);
       transform: rotate(-10deg);
-      color: #0A84FF;
     }
 
     .container {
@@ -136,7 +135,7 @@
       margin: 0 auto;
       padding: 0 40px;
       position: relative;
-      z-index: 2;
+      z-index: 3;
     }
 
     h1, h2, h3, h4, p, a, li, button {
@@ -186,19 +185,18 @@
       letter-spacing: 0.5px;
       backdrop-filter: blur(8px);
       text-transform: uppercase;
+      box-shadow: none !important;
     }
 
     .btn-primary {
       background: #0A84FF;
       color: #000;
       border: 1.5px solid #0A84FF;
-      box-shadow: 0 0 20px rgba(10, 132, 255, 0.3);
     }
 
     .btn-primary:hover {
       background: #0066CC;
       border-color: #0066CC;
-      box-shadow: 0 0 30px rgba(10, 132, 255, 0.5);
     }
 
     .btn-outline:hover {
@@ -276,7 +274,13 @@
       color: #ffffff;
     }
 
-    /* Hero с картинкой */
+    /* Кнопка с полным скруглением */
+    .nav-btn {
+      border-radius: 60px !important;
+      margin-left: 8px;
+    }
+
+    /* Hero */
     .hero {
       padding: 120px 0 100px;
       text-align: left;
@@ -292,16 +296,20 @@
       flex: 1;
     }
 
-    .hero-image {
-      flex: 0 0 300px;
-      text-align: right;
+    .hero-images {
+      flex: 0 0 340px;
+      display: flex;
+      gap: 20px;
+      justify-content: flex-end;
     }
 
-    .hero-image img {
-      max-width: 100%;
-      border-radius: 24px;
+    .hero-images img {
+      width: 160px;
+      height: auto;
+      border-radius: 20px;
       border: 1px solid #2C2C30;
       box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      object-fit: cover;
     }
 
     .hero-badge {
@@ -366,12 +374,10 @@
       color: #6C6C74;
     }
 
-    /* Секции с отступами */
     section {
       padding: 100px 0;
     }
 
-    /* Футер */
     footer {
       border-top: 1px solid rgba(255,255,255,0.05);
       padding: 60px 0 30px;
@@ -479,7 +485,7 @@
       visibility: hidden;
       transition: all 0.3s;
       z-index: 99;
-      box-shadow: 0 4px 20px rgba(10, 132, 255, 0.4);
+      box-shadow: none !important;
       text-decoration: none;
     }
 
@@ -492,14 +498,11 @@
       background: #0066CC;
     }
 
-    /* Убираем адаптивные изменения, чтобы на мобильных было как на десктопе */
-    /* Оставляем только горизонтальный скролл при необходимости */
     body {
-      min-width: 1200px; /* чтобы не схлопывалось, можно убрать, если не нужно */
+      min-width: 1200px;
     }
 
     @media (max-width: 900px) {
-      /* Никаких изменений в раскладке — всё остается как на десктопе */
       body {
         min-width: 1200px;
       }
@@ -508,7 +511,6 @@
       }
     }
 
-    /* Утилиты */
     .typewriter {
       border-right: 2px solid #0A84FF;
       white-space: nowrap;
@@ -521,7 +523,6 @@
       50% { border-color: #0A84FF; }
     }
 
-    /* Для скрытия скроллбара внутри модалки */
     .modal-content::-webkit-scrollbar {
       display: none;
     }
@@ -529,20 +530,34 @@
 </head>
 <body>
 
-<!-- Фон с пятнами криптографии / шифрования / кода -->
-<div class="bg-crypto">
-  <span class="crypto1">AES-256-GCM / ChaCha20-Poly1305</span>
-  <span class="crypto2">vless://...@185.193.89.183:2096?security=reality&fp=chrome&pbk=...</span>
-  <span class="crypto3">"streamSettings": { "security": "reality" }</span>
-  <span class="crypto4">0x7a2b...f3c1 → 0x9d4e...a8b2</span>
-  <span class="crypto5">Privacy by design · Zero logs</span>
-  <span class="crypto6">> openssl enc -aes-256-cbc -in plain.txt -out cipher.bin</span>
-  <span class="crypto7">-----BEGIN RSA PRIVATE KEY-----</span>
-  <span class="crypto8">"shortIds": ["4c41f2cf", "c7", "1dea"]</span>
-  <span class="crypto9">Никаких логов — ваше дело ваше</span>
-  <!-- Дополнительные пятна -->
-  <span style="top: 33%; left: 75%; font-size: 20px; opacity:0.4; transform:rotate(-20deg); color:#0A84FF;">SHA-256 / XTLS Vision</span>
-  <span style="bottom: 20%; left: 50%; font-size: 22px; opacity:0.5; transform:rotate(5deg); color:#5E5CE6;">tls 1.3 / certificate pinning</span>
+<!-- Фоновый терминал MacBook -->
+<div class="bg-terminal">
+  <div class="terminal-header">
+    <div class="terminal-dot dot-red"></div>
+    <div class="terminal-dot dot-yellow"></div>
+    <div class="terminal-dot dot-green"></div>
+    <span style="margin-left: 12px; color: #A0C8FF; font-size: 12px;">gigabyte@vpn-server:~/reality</span>
+  </div>
+  <div class="terminal-content">
+    <div class="terminal-line"><span class="prompt">$</span> <span class="command">openssl rand -base64 32</span></div>
+    <div class="terminal-line output">SIt_qsxheGrrbxGqV3N5btmsxmx2XrqgNS59jXM7S20</div>
+    <div class="terminal-line"><span class="prompt">$</span> <span class="command">./xray run -config config.json</span></div>
+    <div class="terminal-line output">[Info] Xray 1.8.23 started</div>
+    <div class="terminal-line output">[Info] VLESS Reality inbound listening on 0.0.0.0:2096</div>
+    <div class="terminal-line"><span class="prompt">$</span> <span class="command">python3 bot.py --sync</span></div>
+    <div class="terminal-line output">Syncing subscriptions with 3x-ui panel...</div>
+    <div class="terminal-line output">Active users: 184 | Payments pending: 3</div>
+    <div class="terminal-line"><span class="prompt">$</span> <span class="command">tail -f /var/log/xray/error.log</span></div>
+    <div class="terminal-line comment"># Logging disabled — no data saved</div>
+    <div class="terminal-line"><span class="prompt">$</span> <span class="command">echo "Никаких логов — ваше дело ваше"</span></div>
+    <div class="terminal-line output">Никаких логов — ваше дело ваше</div>
+  </div>
+</div>
+
+<!-- Дополнительные пятна -->
+<div class="bg-crypto-spot">
+  <span style="top: 10%; left: 5%;">AES-256-GCM</span>
+  <span style="bottom: 20%; right: 8%;">0x7a2b...f3c1</span>
 </div>
 
 <!-- Парящая капсула -->
@@ -561,13 +576,13 @@
         <a href="#status">Статус</a>
         <a href="#docs">Документы</a>
       </div>
-      <a href="https://t.me/givpn_bot" class="btn btn-outline" target="_blank">Открыть бот</a>
+      <a href="https://t.me/givpn_bot" class="btn btn-outline nav-btn" target="_blank">Открыть бот</a>
     </div>
   </div>
 </header>
 
 <main>
-  <!-- Hero с картинкой бота -->
+  <!-- Hero с двумя фото -->
   <section class="hero">
     <div class="container">
       <div class="hero-grid">
@@ -583,8 +598,9 @@
             <span class="typewriter">> Подключение через VLESS Reality // порт 2096 // сервер Франция</span>
           </div>
         </div>
-        <div class="hero-image">
+        <div class="hero-images">
           <img src="https://i.ibb.co/8LRNNpsh/IMG-3289.png" alt="Gigabyte Bot">
+          <img src="https://i.ibb.co/rKLNMgMF/185-193-89-183.png" alt="Server IP">
         </div>
       </div>
     </div>
@@ -836,7 +852,7 @@
       }
     });
 
-    // Полная политика конфиденциальности (уже была)
+    // Полная политика конфиденциальности
     const fullPrivacyPolicy = `Преамбула и наши фундаментальные принципы
 Мы в Gigabyte VPN искренне благодарны вам за доверие. Ваша приватность и свобода — это не просто маркетинговый лозунг, а основа нашей архитектуры, корпоративной этики и технической философии. В эпоху, когда цифровой след человека стал предметом торговли и надзора, мы строим сервис, который возвращает вам контроль над вашей цифровой жизнью. Наш главный принцип прост, честен и неизменен: Никаких логов — ваше дело ваше.
 
@@ -1099,7 +1115,7 @@ Reality — это ключевой элемент, обеспечивающий
 Команда Gigabyte VPN
 Дата вступления в силу: 9 апреля 2026 года`;
 
-    // Подробные Условия использования
+    // Условия использования
     const fullTerms = `Условия использования сервиса Gigabyte VPN
 
 1. Общие положения
@@ -1147,7 +1163,7 @@ Reality — это ключевой элемент, обеспечивающий
 
 Дата вступления в силу: 9 апреля 2026 года.`;
 
-    // Подробная Гарантия отсутствия логов
+    // Гарантия отсутствия логов
     const fullNoLogs = `Гарантия отсутствия логов Gigabyte VPN
 
 1. Основополагающий принцип
@@ -1194,18 +1210,28 @@ Gigabyte VPN несет репутационную и юридическую о�
     const modalBody = document.getElementById('modalBody');
     const closeBtn = document.getElementById('closeModalBtn');
 
+    function openModal(docId) {
+      modalTitle.innerText = docId === 'privacy' ? 'Политика конфиденциальности' : (docId==='terms'?'Условия использования':'Гарантия отсутствия логов');
+      modalBody.innerText = docs[docId] || 'Документ в разработке';
+      modal.style.display = 'flex';
+      document.body.classList.add('modal-open');
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+      document.body.classList.remove('modal-open');
+    }
+
     document.querySelectorAll('.doc-link').forEach(el => {
       el.addEventListener('click', e => {
         e.preventDefault();
         const doc = el.dataset.doc;
-        modalTitle.innerText = doc === 'privacy' ? 'Политика конфиденциальности' : (doc==='terms'?'Условия использования':'Гарантия отсутствия логов');
-        modalBody.innerText = docs[doc] || 'Документ в разработке';
-        modal.style.display = 'flex';
+        openModal(doc);
       });
     });
 
-    closeBtn.onclick = () => modal.style.display = 'none';
-    modal.onclick = e => { if(e.target === modal) modal.style.display = 'none'; };
+    closeBtn.onclick = closeModal;
+    modal.onclick = e => { if(e.target === modal) closeModal(); };
 
     // Toast "Скоро"
     const toast = document.getElementById('soonToast');
