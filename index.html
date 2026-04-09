@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Gigabyte VPN · Приватность как код</title>
   <meta name="description" content="Gigabyte VPN — децентрализованный доступ. VLESS Reality. Никаких логов. Ваше дело — ваше.">
   <link rel="icon" type="image/png" href="favicon.png">
@@ -33,7 +33,7 @@
       color: #E5E5E7;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      overflow-x: auto;  /* разрешаем горизонтальный скролл при необходимости */
+      overflow-x: hidden;
       position: relative;
     }
 
@@ -44,7 +44,7 @@
     .container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 20px;
       position: relative;
       z-index: 3;
     }
@@ -54,7 +54,7 @@
     }
 
     h1 {
-      font-size: 5.5rem;
+      font-size: clamp(3rem, 8vw, 5.5rem);
       font-weight: 700;
       letter-spacing: -0.02em;
       line-height: 1.1;
@@ -65,19 +65,19 @@
     }
 
     h2 {
-      font-size: 3.5rem;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
       font-weight: 600;
       letter-spacing: -0.02em;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       color: #FFFFFF;
     }
 
     .section-subtitle {
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: #7F7F8C;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       border-left: 4px solid #0A84FF;
-      padding-left: 20px;
+      padding-left: 16px;
     }
 
     .btn {
@@ -86,10 +86,10 @@
       color: #0A84FF;
       border: 1.5px solid #0A84FF;
       font-weight: 600;
-      padding: 12px 32px;
+      padding: 10px 24px;
       border-radius: 0px;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 0.9rem;
       transition: all 0.2s;
       cursor: pointer;
       font-family: inherit;
@@ -117,48 +117,42 @@
     /* Парящая капсула */
     .navbar {
       position: sticky;
-      top: 20px;
+      top: 16px;
       z-index: 100;
-      margin: 0 auto;
-      max-width: fit-content;
+      margin: 0 16px;
       background: rgba(20, 20, 25, 0.75);
       backdrop-filter: blur(30px);
       -webkit-backdrop-filter: blur(30px);
       border-radius: 60px;
-      padding: 8px 12px;
+      padding: 6px 10px;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
       border: 0.5px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .navbar .container {
-      padding: 0;
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
       gap: 8px;
-      flex-wrap: nowrap;  /* чтобы не переносилось */
     }
 
     .nav-logo {
       font-weight: 600;
-      font-size: 20px;
+      font-size: 18px;
       letter-spacing: -0.02em;
       color: #ffffff;
       text-decoration: none;
       padding: 8px 16px;
       border-radius: 40px;
       background: rgba(255, 255, 255, 0.05);
-      margin-right: 8px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     .nav-logo img {
-      height: 28px;
+      height: 24px;
       width: auto;
       border-radius: 6px;
     }
@@ -166,14 +160,16 @@
     .nav-links {
       display: flex;
       gap: 4px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .nav-links a {
       text-decoration: none;
       color: #d1d1d6;
       font-weight: 500;
-      font-size: 15px;
-      padding: 10px 18px;
+      font-size: 14px;
+      padding: 8px 14px;
       border-radius: 40px;
       transition: all 0.2s;
       text-transform: uppercase;
@@ -185,39 +181,39 @@
       color: #ffffff;
     }
 
-    /* Кнопка с полным скруглением */
     .nav-btn {
       border-radius: 60px !important;
-      margin-left: 8px;
     }
 
     /* Hero */
     .hero {
-      padding: 120px 0 100px;
+      padding: 80px 0 60px;
       text-align: left;
     }
 
     .hero-grid {
       display: flex;
       align-items: center;
-      gap: 60px;
+      gap: 40px;
+      flex-wrap: wrap;
     }
 
     .hero-content {
-      flex: 1;
+      flex: 2;
+      min-width: 280px;
     }
 
     .hero-images {
-      flex: 0 0 500px;
+      flex: 1;
       display: flex;
-      gap: 24px;
-      justify-content: flex-end;
+      justify-content: center;
     }
 
     .hero-images img {
-      width: 240px;
+      width: 100%;
+      max-width: 320px;
       height: auto;
-      border-radius: 20px;
+      border-radius: 24px;
       border: 1px solid #2C2C30;
       box-shadow: 0 20px 40px rgba(0,0,0,0.6);
       object-fit: cover;
@@ -228,23 +224,24 @@
       background: rgba(10, 132, 255, 0.1);
       border: 1px solid rgba(10, 132, 255, 0.3);
       color: #0A84FF;
-      padding: 8px 20px;
-      margin-bottom: 30px;
+      padding: 6px 16px;
+      margin-bottom: 20px;
       font-weight: 500;
       letter-spacing: 1px;
       text-transform: uppercase;
+      font-size: 0.9rem;
     }
 
     .hero p {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       color: #98989E;
-      max-width: 800px;
-      margin: 30px 0 40px;
+      max-width: 700px;
+      margin: 20px 0 30px;
     }
 
     .hero-buttons {
       display: flex;
-      gap: 20px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
@@ -253,7 +250,7 @@
       background: rgba(20, 20, 25, 0.7);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 40px;
+      padding: 30px;
       transition: all 0.3s;
     }
 
@@ -265,13 +262,13 @@
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
+      gap: 24px;
     }
 
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
+      gap: 30px;
     }
 
     .code-line {
@@ -286,27 +283,28 @@
     }
 
     section {
-      padding: 100px 0;
+      padding: 70px 0;
     }
 
     footer {
       border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 60px 0 30px;
-      margin-top: 80px;
+      padding: 50px 0 30px;
+      margin-top: 60px;
     }
 
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 50px;
+      gap: 40px;
     }
 
     .footer-links h4 {
       color: #fff;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
+      font-size: 1rem;
     }
 
     .footer-links ul {
@@ -314,13 +312,14 @@
     }
 
     .footer-links li {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .footer-links a {
       color: #8E8E93;
       text-decoration: none;
       transition: color 0.2s;
+      font-size: 0.9rem;
     }
 
     .footer-links a:hover {
@@ -328,10 +327,10 @@
     }
 
     .copyright {
-      margin-top: 60px;
+      margin-top: 50px;
       text-align: center;
       color: #636366;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
     }
 
     /* Стеклянное модальное окно */
@@ -345,16 +344,17 @@
       z-index: 1000;
       align-items: center;
       justify-content: center;
+      padding: 16px;
     }
 
     .modal-content {
       max-width: 900px;
-      width: 90%;
+      width: 100%;
       background: rgba(20, 20, 28, 0.6);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 40px;
+      padding: 30px;
       max-height: 85vh;
       overflow-y: auto;
       color: #D1D1D6;
@@ -365,7 +365,7 @@
     .modal-header {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
     }
 
     .close-modal {
@@ -379,10 +379,10 @@
     /* Кнопка наверх */
     .back-to-top {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
+      bottom: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
       background: #0A84FF;
       color: #000;
       border: none;
@@ -390,7 +390,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 20px;
       cursor: pointer;
       opacity: 0;
       visibility: hidden;
@@ -409,7 +409,6 @@
       background: #0066CC;
     }
 
-    /* Убираем все медиа-запросы и min-width, чтобы вьюпорт не ломался */
     .typewriter {
       border-right: 2px solid #0A84FF;
       white-space: nowrap;
@@ -425,33 +424,83 @@
     .modal-content::-webkit-scrollbar {
       display: none;
     }
+
+    /* ========== АДАПТИВНОСТЬ ========== */
+    @media (max-width: 1024px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+      .navbar {
+        margin: 0 12px;
+      }
+      .nav-inner {
+        justify-content: center;
+      }
+      .hero-grid {
+        flex-direction: column-reverse;
+      }
+      .hero-images img {
+        max-width: 260px;
+      }
+      .grid-3, .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      section {
+        padding: 50px 0;
+      }
+      .terminal-card {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links a {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+      .btn {
+        padding: 8px 18px;
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
 <body>
 
 <!-- Парящая капсула -->
 <header class="navbar">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <img src="https://i.ibb.co/wZVQRbs9/913-A0-F9-F-8-D47-4-DCC-ADD2-0-F51-E3-FDD157.png" alt="Gigabyte" onerror="this.style.display='none'">
-        Gigabyte
-      </a>
-      <div class="nav-links">
-        <a href="#service">Сервис</a>
-        <a href="#pricing">Тарифы</a>
-        <a href="#setup">Инструкции</a>
-        <a href="#partners">Партнёрам</a>
-        <a href="#status">Статус</a>
-        <a href="#docs">Документы</a>
-      </div>
-      <a href="https://t.me/givpn_bot" class="btn btn-outline nav-btn" target="_blank">Открыть бот</a>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="https://i.ibb.co/wZVQRbs9/913-A0-F9-F-8-D47-4-DCC-ADD2-0-F51-E3-FDD157.png" alt="Gigabyte" onerror="this.style.display='none'">
+      Gigabyte
+    </a>
+    <div class="nav-links">
+      <a href="#service">Сервис</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#setup">Инструкции</a>
+      <a href="#partners">Партнёрам</a>
+      <a href="#status">Статус</a>
+      <a href="#docs">Документы</a>
     </div>
+    <a href="https://t.me/givpn_bot" class="btn btn-outline nav-btn" target="_blank">Открыть бот</a>
   </div>
 </header>
 
 <main>
-  <!-- Hero с двумя фото увеличенного размера -->
+  <!-- Hero с одним фото увеличенного размера -->
   <section class="hero">
     <div class="container">
       <div class="hero-grid">
@@ -463,13 +512,12 @@
             <a href="https://t.me/givpn_bot" class="btn btn-primary" target="_blank">🚀 Начать в Telegram</a>
             <a href="#pricing" class="btn btn-outline">Тарифы</a>
           </div>
-          <div style="margin-top: 50px; font-size: 1rem; opacity: 0.6;">
+          <div style="margin-top: 40px; font-size: 0.9rem; opacity: 0.6;">
             <span class="typewriter">> Подключение через VLESS Reality // порт 2096 // сервер Франция</span>
           </div>
         </div>
         <div class="hero-images">
           <img src="https://i.ibb.co/8LRNNpsh/IMG-3289.png" alt="Gigabyte Bot">
-          <img src="https://i.ibb.co/rKLNMgMF/185-193-89-183.png" alt="Server IP">
         </div>
       </div>
     </div>
@@ -504,12 +552,12 @@
   </section>
 
   <!-- Почему нет приложения -->
-  <section style="padding: 0 0 80px;">
+  <section style="padding: 0 0 60px;">
     <div class="container">
-      <div class="terminal-card" style="padding: 50px;">
-        <div style="display: flex; flex-wrap: wrap; gap: 40px;">
-          <div style="flex: 2;">
-            <h3 style="font-size: 2.2rem; margin-bottom: 20px;">// Почему у нас нет своего приложения?</h3>
+      <div class="terminal-card" style="padding: 40px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+          <div style="flex: 2; min-width: 260px;">
+            <h3 style="font-size: 2rem; margin-bottom: 20px;">// Почему у нас нет своего приложения?</h3>
             <p style="margin-bottom: 20px;">Мы верим в открытость и аудируемость. Вместо создания ещё одного закрытого клиента, мы рекомендуем проверенные open‑source решения: <strong>v2rayNG</strong> (Android/Windows) и <strong>Streisand</strong> (iOS/macOS).</p>
             <p style="margin-bottom: 20px;">Это гарантирует, что код, который обрабатывает ваш трафик, может быть проверен независимыми экспертами. Мы не хотим быть «чёрным ящиком».</p>
             <p><span class="code-line" style="display: inline-block;">> ETA собственного клиента: Q4 2026 (после завершения аудита безопасности).</span></p>
@@ -532,8 +580,8 @@
       <div class="grid-3">
         <div class="terminal-card">
           <div class="code-line">> plan --name "1 месяц"</div>
-          <div style="font-size: 3.5rem; margin: 20px 0; font-weight: 700;">399 ₽</div>
-          <ul style="list-style: none; margin: 30px 0;">
+          <div style="font-size: 3rem; margin: 20px 0; font-weight: 700;">399 ₽</div>
+          <ul style="list-style: none; margin: 25px 0;">
             <li class="code-line">> server: France (185.193.89.183:2096)</li>
             <li class="code-line">> devices: до 2</li>
             <li class="code-line">> traffic: unlimited</li>
@@ -542,8 +590,8 @@
         </div>
         <div class="terminal-card" style="border-color: #0A84FF;">
           <div class="code-line" style="color:#0A84FF;">> plan --name "3 месяца" --popular</div>
-          <div style="font-size: 3.5rem; margin: 20px 0; font-weight: 700;">999 ₽</div>
-          <ul style="list-style: none; margin: 30px 0;">
+          <div style="font-size: 3rem; margin: 20px 0; font-weight: 700;">999 ₽</div>
+          <ul style="list-style: none; margin: 25px 0;">
             <li class="code-line">> server: France + новые локации</li>
             <li class="code-line">> devices: до 3</li>
             <li class="code-line">> priority support</li>
@@ -552,8 +600,8 @@
         </div>
         <div class="terminal-card">
           <div class="code-line">> plan --name "6 месяцев"</div>
-          <div style="font-size: 3.5rem; margin: 20px 0; font-weight: 700;">1 799 ₽</div>
-          <ul style="list-style: none; margin: 30px 0;">
+          <div style="font-size: 3rem; margin: 20px 0; font-weight: 700;">1 799 ₽</div>
+          <ul style="list-style: none; margin: 25px 0;">
             <li class="code-line">> server: все текущие + будущие</li>
             <li class="code-line">> devices: до 5</li>
             <li class="code-line">> promo codes</li>
@@ -571,21 +619,21 @@
       <h2>// Инструкции</h2>
       <div class="grid-2">
         <div class="terminal-card">
-          <h3 style="font-size:2rem; margin-bottom:20px;">Android / Windows</h3>
+          <h3 style="font-size:1.8rem; margin-bottom:20px;">Android / Windows</h3>
           <p class="code-line">> Рекомендуемый клиент: v2rayNG</p>
-          <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="btn btn-outline" style="margin:20px 0;">Скачать для Android</a>
-          <a href="https://github.com/2dust/v2rayNG/releases" target="_blank" class="btn btn-outline" style="margin:20px 0;">Скачать для Windows</a>
-          <div style="margin-top:30px;">
+          <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="btn btn-outline" style="margin:16px 0;">Скачать для Android</a>
+          <a href="https://github.com/2dust/v2rayNG/releases" target="_blank" class="btn btn-outline" style="margin:16px 0;">Скачать для Windows</a>
+          <div style="margin-top:25px;">
             <div class="code-line">1. Установите v2rayNG</div>
             <div class="code-line">2. Скопируйте VLESS-ссылку из @givpn_bot</div>
             <div class="code-line">3. Импорт из буфера → Подключиться</div>
           </div>
         </div>
         <div class="terminal-card">
-          <h3 style="font-size:2rem; margin-bottom:20px;">iOS / macOS</h3>
+          <h3 style="font-size:1.8rem; margin-bottom:20px;">iOS / macOS</h3>
           <p class="code-line">> Рекомендуемый клиент: Streisand</p>
-          <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" class="btn btn-outline" style="margin:20px 0;">Скачать для iOS / macOS</a>
-          <div style="margin-top:30px;">
+          <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" class="btn btn-outline" style="margin:16px 0;">Скачать для iOS / macOS</a>
+          <div style="margin-top:25px;">
             <div class="code-line">1. Установите Streisand из App Store</div>
             <div class="code-line">2. Скопируйте VLESS-ссылку или отсканируйте QR</div>
             <div class="code-line">3. Импорт → Разрешить VPN</div>
@@ -599,14 +647,14 @@
   <section id="partners">
     <div class="container">
       <h2>// Партнёрам</h2>
-      <div class="terminal-card" style="padding:50px;">
-        <div style="display:flex; gap:40px; flex-wrap:wrap;">
+      <div class="terminal-card" style="padding:40px;">
+        <div style="display:flex; gap:30px; flex-wrap:wrap;">
           <div style="flex:2;">
             <div class="code-line">> referral_program --details</div>
             <p style="margin:20px 0;">Мы предлагаем выгодные условия для блогеров и медиа. Персональные промокоды, до 30% отчислений.</p>
             <a href="https://t.me/givpn_bot" class="btn btn-primary">Обсудить в боте</a>
           </div>
-          <div style="flex:1; border-left:1px solid #2C2C30; padding-left:30px;">
+          <div style="flex:1; border-left:1px solid #2C2C30; padding-left:25px;">
             <div class="code-line">> partner_stats</div>
             <div class="code-line">active_refs: ...</div>
             <div class="code-line">commission: ...</div>
@@ -656,9 +704,9 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div style="font-size:2rem; margin-bottom:20px;">Gigabyte</div>
+        <div style="font-size:1.8rem; margin-bottom:16px;">Gigabyte</div>
         <p style="opacity:0.7;">$ echo "Privacy by design"</p>
-        <p style="margin-top:20px;">support@gigabyte-vpn.tech</p>
+        <p style="margin-top:16px;">support@gigabyte-vpn.tech</p>
         <p>@givpn_bot</p>
       </div>
       <div class="footer-links">
@@ -707,7 +755,7 @@
 </div>
 
 <!-- Toast -->
-<div id="soonToast" style="position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#0A84FF; color:#000; padding:12px 30px; font-weight:bold; z-index:9999; opacity:0; transition:0.2s; pointer-events:none;">СКОРО</div>
+<div id="soonToast" style="position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#0A84FF; color:#000; padding:10px 24px; font-weight:bold; z-index:9999; opacity:0; transition:0.2s; pointer-events:none;">СКОРО</div>
 
 <script>
   (function(){
@@ -721,14 +769,352 @@
       }
     });
 
-    // Полная политика конфиденциальности (сокращена для читаемости, но в реальном коде полная)
-    const fullPrivacyPolicy = `Преамбула и наши фундаментальные принципы ...`; // Полный текст вставьте из предыдущего ответа
+    // Полная политика конфиденциальности
+    const fullPrivacyPolicy = `Преамбула и наши фундаментальные принципы
+Мы в Gigabyte VPN искренне благодарны вам за доверие. Ваша приватность и свобода — это не просто маркетинговый лозунг, а основа нашей архитектуры, корпоративной этики и технической философии. В эпоху, когда цифровой след человека стал предметом торговли и надзора, мы строим сервис, который возвращает вам контроль над вашей цифровой жизнью. Наш главный принцип прост, честен и неизменен: Никаких логов — ваше дело ваше.
+
+Мы не собираем, не храним и не передаём никакие логи вашей онлайн-активности. То, что вы делаете в интернете, остаётся исключительно вашим делом. Эта Политика конфиденциальности написана с глубочайшим уважением к вам. Она объемна не потому, что мы что-то скрываем, а потому, что мы хотим быть абсолютно прозрачными в описании технологий, которые обеспечивают вашу защиту.
+
+Gigabyte VPN — это Telegram-бот и связанный с ним сервис, предоставляющий доступ к защищённым VPN-серверам на базе протокола VLESS с технологией Reality. Мы создали его, чтобы дать вам реальную цифровую свободу: быстрый, стабильный и по-настоящему приватный доступ к интернету.
+
+Оглавление
+1. Наши фундаментальные обязательства и Гарантия отсутствия логов
+2. Сбор данных: Исчерпывающий список и техническое обоснование
+3. Использование данных: Целевое назначение и ограничения
+4. Платежи и взаимодействие с третьими сторонами
+5. Техническая архитектура: VLESS XTLS Reality и принцип Zero-Trust
+6. Ваши права и механизмы их реализации (GDPR, CCPA, LGPD)
+7. Хранение, удаление и политика устаревания данных
+8. Безопасность инфраструктуры и операционная модель
+9. Политика в отношении несовершеннолетних (COPPA и международные нормы)
+10. Юридические аспекты, юрисдикция и ответы на запросы властей
+11. Изменения Политики и Канареечная гарантия (Warrant Canary)
+12. Связь с нами и процедура разрешения споров
+
+1. Наши фундаментальные обязательства и Гарантия отсутствия логов
+1.1. Абсолютное правило
+Мы никогда не собираем логи подключений, не фиксируем время ваших сессий, не записываем исходные или конечные адреса, не сохраняем содержимое трафика, не логируем DNS-запросы и не ведём никакой истории ваших действий в интернете. Мы не ведём логи. Пользователи имеют полную свободу. Их дело — их дело. Это правило действует всегда и без исключений.
+
+1.2. Техническая невозможность логирования
+В отличие от сервисов, которые декларируют "No Logs", но технически способны включить запись при давлении третьих лиц, архитектура Gigabyte VPN разработана так, чтобы сделать логирование физически невозможным. Благодаря использованию протокола VLESS с транспортом XTLS Reality, ваш трафик мультиплексируется и маскируется под стандартный HTTPS-трафик к доверенным CDN-провайдерам (Microsoft). Это означает, что даже на уровне сетевого интерфейса сервера мы видим лишь зашифрованный поток данных, неотличимый от миллионов других соединений к сайтам microsoft.com или azure.com.
+
+1.3. Детализация гарантии по типам данных
+Для полной ясности мы перечисляем категории данных, которые НИКОГДА не собираются и не хранятся:
+• Метаданные сессии: Временные метки подключения и отключения, длительность сессии, объем переданного трафика за сессию.
+• Сетевые адреса: Реальные IP-адреса пользователей (Source IP) при установке VPN-туннеля. (Ваш Telegram ID не связан с IP-адресом, с которого вы подключаетесь к VPN-серверу).
+• Целевые адреса: Список посещенных веб-сайтов, IP-адреса серверов, к которым вы обращаетесь (Destination IP/Domain).
+• Содержимое трафика: Любые данные, передаваемые внутри туннеля (тексты, изображения, голос, видео).
+• DNS-запросы: Логи обращений к системе доменных имен.
+
+1.4. Мониторинг портов и фильтрация
+Единственное ограничение, реализованное на уровне сетевого экрана (firewall), касается блокировки BitTorrent-протоколов и доступа к приватным IP-диапазонам. Эта фильтрация осуществляется без сохранения состояния (stateless). Мы не анализируем, кто именно пытался использовать P2P, мы просто отбрасываем пакеты определенного типа на входе. Это эквивалентно закрытой двери в здании, где нет списка постучавшихся.
+
+1.5. Повторение мантры
+Никаких логов — ваше дело ваше. Мы не ведём логи. Пользователи имеют полную свободу. Их дело — их дело.
+
+2. Сбор данных: Исчерпывающий список и техническое обоснование
+Мы придерживаемся принципа Минимизации данных. Каждая единица информации, которую мы получаем, имеет критическое функциональное назначение для работы сервиса.
+
+2.1. Данные, предоставляемые Telegram
+Поскольку Gigabyte VPN функционирует как бот на платформе Telegram, мы получаем стандартный набор полей, доступных через Telegram Bot API:
+• Telegram User ID (числовой идентификатор): Назначение: Уникальный ключ базы данных для связывания вас с вашей подпиской. Без этого идентификатора невозможно отличить одного пользователя бота от другого.
+• Telegram Username (публичное имя, если задано): Назначение: Используется исключительно для персонализации обращений в службе поддержки.
+• Telegram Full Name (имя и фамилия, указанные в профиле): Назначение: Аналогично Username, позволяет вести диалог в службе поддержки более человечно.
+• Language Code (язык интерфейса): Назначение: Для автоматического подбора языка уведомлений бота (русский или английский). Данные не хранятся в логах чтения сообщений.
+
+2.2. Данные, генерируемые сервисом (Метаданные подписки)
+• UUID (Universally Unique Identifier): Назначение: Сгенерированный случайным образом идентификатор вашей конфигурации VLESS. Это техническая строка для авторизации на сервере. UUID не содержит информации о вас и не привязан к вашему Telegram ID на стороне VPN-сервера. Сервер знает только "Действительный ключ/Недействительный ключ".
+• Email для технической связки (опционально): Назначение: Хранится в зашифрованном виде исключительно для возможности восстановления доступа к ключам в случае блокировки вашего аккаунта в Telegram. Мы не отправляем маркетинговые рассылки на email.
+• Subscription Expiry Timestamp (Дата истечения подписки): Назначение: Для автоматического отключения доступа к VPN-серверу после завершения оплаченного периода.
+
+2.3. Финансовые и транзакционные данные
+• Telegram Stars: Telegram Charge Identifier. Это уникальный токен, который Telegram передает боту при успешной оплате. Мы не видим данные вашей банковской карты, номер телефона, привязанный к Telegram, или историю покупок.
+• Криптовалюта (Arbitrum): Transaction Hash (Хеш транзакции). Пользователь добровольно отправляет боту хеш транзакции в сети Arbitrum. Мы однократно проверяем статус и сумму перевода через публичный RPC-узел блокчейна. После подтверждения продления подписки связь между хешем и аккаунтом разрывается через 7 дней (период возможных диспутов/ошибок).
+
+2.4. Данные поддержки (Тикеты)
+• Текст обращений. Всё, что вы пишете в чат "Поддержка", сохраняется только для истории переписки, чтобы мы могли решить вашу проблему. Важно: Если вы случайно или намеренно пришлете в чат поддержки конфиденциальную информацию (например, ваш IP-адрес или скриншот с адресной строкой), мы обязуемся не использовать эту информацию, но настоятельно рекомендуем этого не делать.
+
+2.5. Что остается вне нашего поля зрения
+Мы не используем веб-трекеры, пиксели Facebook, Google Analytics, Яндекс.Метрику или любые другие инструменты сквозной аналитики. В нашем боте нет кода, который бы отслеживал, как часто вы нажимаете кнопки или сколько времени проводите в меню. Никаких логов — ваше дело ваше.
+
+3. Использование данных: Целевое назначение и ограничения
+Мы используем собранные данные исключительно в рамках легитимного интереса по предоставлению услуги.
+
+3.1. Исполнение договора (Активация подписки)
+Ваш Telegram ID сопоставляется с UUID и Expiry Timestamp. Это минимально необходимая операция для того, чтобы когда вы нажимаете кнопку "Подключиться", мы выдали вам актуальный конфигурационный файл или ссылку. Без этой связки сервис не может функционировать технически.
+
+3.2. Проверка платежей (Финансовый комплаенс)
+Проверка Charge Identifier или Transaction Hash необходима для предотвращения мошенничества и повторного использования одного и того же чека.
+
+3.3. Клиентский сервис (Поддержка)
+Содержимое тикетов используется для диагностики проблем (например, "не открывается сайт X" — мы можем проверить доступность сайта X с нашего сервера в целом, но не можем и не будем проверять, открывался ли он лично у вас).
+
+3.4. Прямой запрет на иные цели
+• Маркетинг: Мы не используем ваш Telegram ID для рекламы сторонних продуктов. Все уведомления от бота носят сугубо транзакционный или информационный характер (окончание подписки, технические работы, обновление ключей).
+• Профилирование: Мы не создаем цифровых портретов пользователей, не сегментируем аудиторию по интересам и не продаем обобщенные статистические данные.
+• Продажа данных: Мы не продаем данные. Ваш Telegram ID не является товаром в нашем понимании.
+
+Никаких логов — ваше дело ваше. Пользователи имеют полную свободу. Их дело — их дело.
+
+4. Платежи и взаимодействие с третьими сторонами
+4.1. Экосистема Telegram Stars
+При оплате через встроенную валюту Telegram Stars мы полагаемся на процессинг самой платформы Telegram.
+• Политика Telegram: Рекомендуем ознакомиться с Политикой конфиденциальности Telegram.
+• Наши данные: Мы получаем лишь идентификатор транзакции (charge_id). Мы не получаем и не обрабатываем данные вашей банковской карты, которые вы привязываете к аккаунту Telegram для покупки Stars.
+
+4.2. Блокчейн Arbitrum (USDT/USDC)
+Криптовалютные платежи предоставляют максимальную степень анонимности.
+• Публичный характер: Транзакции в сети Arbitrum являются публичными. Однако мы не связываем ваш Telegram ID с адресом вашего кошелька в долгосрочной перспективе. Связь существует только в момент обработки хеша транзакции.
+• Анонимность кошелька: Мы настоятельно рекомендуем использовать децентрализованные кошельки (например, Rabby Wallet, MetaMask) без привязки к централизованным биржам (CEX), если для вас критична полная непрозрачность цепочки платежей.
+
+4.3. Инфраструктура хостинга
+Наши серверы физически размещены в дата-центрах, которые обеспечивают электропитание, охлаждение и интернет-канал. Наши провайдеры инфраструктуры не имеют доступа к данным внутри зашифрованной оперативной памяти сервера. Они могут видеть только общий объем трафика на порту и факт соединения с IP-адресами Microsoft (благодаря Reality). Это стандартная практика для любого хостинга.
+
+4.4. Ответы на запросы третьих лиц (включая государственные органы)
+Мы не передаём ваши данные никаким информационным органам, государственным структурам, правоохранительным органам или любым другим организациям по каким-либо запросам. Причина проста и изложена в Разделе 1: у нас просто нет логов или записей, которые могли бы раскрыть вашу активность. Максимум, что мы можем предоставить по судебному ордеру в отношении конкретного Telegram ID — это:
+1. Факт наличия/отсутствия активной подписки.
+2. UUID конфигурации (который ничего не говорит о трафике).
+
+Мы не можем связать IP-адрес с конкретным пользователем, так как мы не храним эту информацию ни на одном из этапов.
+
+5. Техническая архитектура: VLESS XTLS Reality и принцип Zero-Trust
+Данный раздел предназначен для технических специалистов и любознательных пользователей, желающих убедиться в надежности нашей платформы.
+
+5.1. Протокол VLESS
+Мы выбрали протокол VLESS (потомок VMess) вместо устаревшего OpenVPN или компрометированного WireGuard (в плане маскировки) по следующим причинам:
+• Отсутствие идентификации в plaintext: В отличие от TLS-рукопожатия в OpenVPN, VLESS не передает сертификаты, которые могут быть легко идентифицированы DPI-системами.
+• Легковесность: Меньшая нагрузка на процессор сервера позволяет держать высокую скорость соединения при большом количестве одновременных подключений без необходимости в дорогостоящем "железе".
+• Интеграция с XTLS: Позволяет использовать технологию XTLS Vision, которая вырезает лишнее шифрование из цепочки, снижая задержки без потери безопасности.
+
+5.2. Технология Reality
+Reality — это ключевой элемент, обеспечивающий вашу цифровую безопасность на уровне государства или крупного провайдера. Принцип работы:
+1. Маскировка под целевой сайт: Вместо того чтобы выглядеть как VPN-соединение, ваш трафик выглядит как обычный просмотр веб-страницы, например, microsoft.com или swift.org.
+2. Заимствование отпечатка: Сервер Gigabyte VPN при установке соединения использует реальный публичный сертификат и параметры Client Hello целевого сайта. Системы глубокого анализа пакетов (DPI) видят легитимное TLS-соединение с серверами Microsoft, а не с подозрительным прокси-сервером.
+3. Уничтожение ключей сессии: Кратковременные ключи шифрования существуют только в оперативной памяти (RAM) сервера и уничтожаются немедленно после разрыва соединения.
+
+5.3. Конфигурация серверов и отсутствие логов
+• Sniffing: Полностью отключен на уровне ядра и приложения Xray-core. Sniffing — это механизм, позволяющий прокси "заглядывать" в трафик для определения домена назначения. У нас он отключен, поэтому сервер не знает, идете ли вы на google.com или prohoster.info.
+• Access Log и Error Log:
+  - Access Log: Перенаправлен в /dev/null. Это значит, что записи о подключениях не создаются физически, они отбрасываются операционной системой в момент появления.
+  - Error Log: Ограничен уровнем error (только критические сбои). Любая запись об ошибке не содержит реального IP-адреса пользователя или домена назначения. Содержит только внутренние коды состояния Xray. Ротация логов ошибок настроена на 7 дней с последующим уничтожением (shred). Это сделано для устранения технических проблем, а не для слежки.
+• Short ID: Мы регулярно ротируем Short ID — это дополнительный параметр аутентификации в VLESS, который меняется через определенные промежутки времени для всех пользователей, что дополнительно усложняет корреляцию трафика даже при гипотетическом анализе потоков.
+
+5.4. DNS-резолвинг
+Все DNS-запросы от вашего устройства заворачиваются в тот же зашифрованный туннель. На сервере Gigabyte VPN используется локальный кэширующий DNS-резолвер (Unbound) с прямым обращением к корневым серверам DNS.
+• Политика DNS: Мы не используем публичные DNS вроде Google (8.8.8.8) или Cloudflare (1.1.1.1) на уровне сервера, так как это создает еще один вектор потенциальной утечки метаданных. Мы резолвим домены напрямую у корневых серверов, что является "золотым стандартом" приватности.
+• Отсутствие логирования DNS: Логирование запросов в Unbound отключено директивой log-queries: no.
+
+5.5. Блокировка злоупотреблений (Abuse Prevention)
+Для защиты сервиса от использования в незаконных целях (DDoS-атаки, спам, эксплуатация уязвимостей) и предотвращения занесения IP-адресов серверов в черные списки (Blacklists) мы блокируем:
+• Приватные диапазоны IP: RFC 1918 (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16).
+• Торренты: Блокировка DHT и трекеров на уровне фаервола.
+• Известные вредоносные адреса: Блокировка на основе динамически обновляемого списка публичных Threat Intelligence Feeds (например, Spamhaus DROP) без логирования того, кто пытался к ним обратиться.
+
+Никаких логов — ваше дело ваше. Мы не ведём логи. Пользователи имеют полную свободу. Их дело — их дело.
+
+6. Ваши права и механизмы их реализации (GDPR, CCPA, LGPD)
+Мы уважаем права пользователей вне зависимости от их географического местоположения. Наша политика соответствует требованиям GDPR (Европа), CCPA/CPRA (Калифорния), LGPD (Бразилия) и PIPEDA (Канада).
+
+6.1. Право на доступ (Right to Access)
+Вы имеете право в любой момент запросить копию всех данных, которые мы храним о вас в нашей системе. Учитывая нашу политику минимизации данных, ответ на такой запрос будет включать:
+• Ваш Telegram ID.
+• Статус подписки и дату истечения.
+• Количество активных конфигураций (обычно 1).
+
+6.2. Право на удаление (Right to Erasure / Right to be Forgotten)
+Вы можете потребовать полного удаления вашего аккаунта. Процедура проста:
+1. Отправьте команду /delete_me в боте или напишите в поддержку.
+2. В течение 24 часов (обычно в течение нескольких минут) ваш аккаунт будет полностью удален из базы данных.
+3. Следствие отсутствия логов: Поскольку мы не храним историю сессий, процесс удаления не требует "очистки логов сервера" — их просто нет. Удаление записи в базе данных означает, что никакой информации о факте использования вами VPN не существует.
+
+6.3. Право на переносимость данных (Data Portability)
+В связи с тем, что объем хранимых нами данных ограничивается несколькими байтами текста (ID, UUID, Timestamp), мы предоставляем их в формате структурированного JSON-файла по запросу.
+
+6.4. Право на отзыв согласия (Withdrawal of Consent)
+Вы можете прекратить использование сервиса в любой момент. Отсутствие активной платной подписки автоматически влечет за собой прекращение обработки вашего Telegram ID для целей предоставления доступа к VPN.
+
+6.5. Процедура верификации
+Для выполнения запросов, связанных с персональными данными, мы должны убедиться, что запрос исходит именно от владельца аккаунта. Поскольку у нас нет email или паспортных данных, верификация производится через отправку кода подтверждения в ваш диалог с ботом @GigabyteVPNBot. Это гарантирует, что никто посторонний не сможет запросить данные о вашем аккаунте.
+
+7. Хранение, удаление и политика устаревания данных
+7.1. Активные аккаунты
+Данные, указанные в Разделе 2, хранятся в зашифрованной базе данных (AES-256) на выделенном сервере в Нидерландах. Доступ к этой базе имеет только ограниченный круг администраторов через VPN-туннель с двухфакторной аутентификацией.
+
+7.2. Неактивные аккаунты (Срок действия подписки истек)
+Если ваша подписка истекла и не была продлена, ваши данные хранятся в течение 30 календарных дней. Это сделано для удобства: если вы решите возобновить подписку через 2 недели, вам не придется настраивать новые ключи, достаточно просто оплатить. По истечении 30 дней данные UUID и метаданные аккаунта безвозвратно удаляются автоматическим скриптом (cron job).
+
+7.3. Платежные идентификаторы
+Связь Transaction Hash (Arbitrum) с Telegram ID удаляется через 7 дней после зачисления подписки (период, в течение которого теоретически возможна ошибка в расчетах). Связь Charge Identifier (Telegram Stars) с Telegram ID не удаляется, так как Telegram может запросить возврат средств в течение более длительного срока, предусмотренного правилами площадки.
+
+7.4. Резервные копии (Backups)
+Шифрованные резервные копии базы данных создаются ежедневно и хранятся в географически удаленном защищенном хранилище. Ротация резервных копий настроена на 90 дней. Это означает, что даже если ваш аккаунт удален сегодня, его остаточные данные могут существовать в резервной копии до 90 дней, но они недоступны оперативно и не используются для восстановления отдельных аккаунтов. По истечении 90 дней резервные блоки данных перезаписываются новыми.
+
+8. Безопасность инфраструктуры и операционная модель
+8.1. Безопасность сервера
+• Hardening: Серверы работают на минималистичных сборках Alpine Linux с кастомным ядром, собранным без поддержки ненужных модулей (например, Bluetooth, WiFi, устаревшие драйверы). Поверхность атаки сведена к минимуму.
+• Доступ: Доступ по SSH возможен только с использованием аппаратных ключей YubiKey (FIDO2). Парольная аутентификация отключена. Порт SSH скрыт за технологией Port Knocking.
+• Обновления: Автоматическое применение критических обновлений безопасности (kernel live patching).
+
+8.2. Модель угроз и наше позиционирование
+Мы исходим из модели угроз, где третьи лица (провайдеры, государства, хакеры) могут попытаться перехватить или проанализировать трафик на уровне магистральных каналов связи. Наша защита строится на принципе "Не хранить то, что могут попросить отдать".
+
+8.3. Аудит безопасности
+Мы находимся в процессе подготовки к независимому аудиту безопасности от одной из компаний "Большой четверки" в 2026-2027 году. Мы обязуемся опубликовать резюме отчета аудита (за исключением конфиденциальных деталей, касающихся текущих IP-адресов серверов) в нашем канале в Telegram.
+
+9. Политика в отношении несовершеннолетних (COPPA и международные нормы)
+9.1. Возрастное ограничение 18+
+Сервис Gigabyte VPN предназначен исключительно для лиц, достигших 18 лет (или иного возраста совершеннолетия в вашей юрисдикции, если он выше). Это связано не с содержанием сервиса, а с правоспособностью заключать платные подписки и осознанным согласием на обработку данных.
+
+9.2. Процедура при обнаружении
+Мы не запрашиваем дату рождения при регистрации, так как это создало бы избыточный сбор данных. Однако если нам станет достоверно известно (например, из обращения в поддержку или из публичного профиля), что пользователь не достиг 18 лет, мы обязуемся:
+1. Немедленно приостановить действие подписки.
+2. Заблокировать доступ к конфигурациям.
+3. Удалить Telegram ID и все связанные данные в течение 24 часов.
+4. Инициировать возврат средств (за вычетом комиссий платежной системы, если применимо) в течение 7 рабочих дней.
+
+Мы искренне заботимся о защите детей в цифровой среде и призываем родителей использовать специализированные средства родительского контроля, а не только VPN.
+
+10. Юридические аспекты, юрисдикция и ответы на запросы властей
+10.1. Применимое право
+Сервис управляется компанией, зарегистрированной в юрисдикции, не входящей в альянсы разведок "Five Eyes", "Nine Eyes" или "Fourteen Eyes". Юридическим адресом для корреспонденции является адрес на территории ЕС (Нидерланды), что обеспечивает защиту в рамках GDPR. Мы руководствуемся законодательством Королевства Нидерландов.
+
+10.2. Политика взаимодействия с правоохранительными органами (Law Enforcement Guidelines)
+Мы ценим и уважаем работу правоохранительных органов. Однако мы также верим в верховенство закона и должные правовые процедуры.
+• Обязательные условия: Для предоставления какой-либо информации мы требуем официального, действительного судебного ордера или постановления, выданного компетентным судом Королевства Нидерландов. Запросы от иностранных агентств должны проходить через процедуру MLAT (Договор о взаимной правовой помощи) и быть признаны голландским судом.
+• Политика уведомления пользователя: В случае получения юридически обязывающего запроса, который не запрещает разглашение его факта (gag order), мы обязуемся уведомить пользователя о запросе через Telegram-бота, чтобы он мог реализовать свое право на юридическую защиту.
+• Отсутствие данных: Даже при наличии ордера мы сможем предоставить только информацию из Раздела 2 (Telegram ID, статус подписки). Мы физически не можем предоставить логи соединений, IP-адреса или историю посещений, так как они не создаются.
+
+10.3. Гарантийный фонд правовой защиты
+Мы выделяем часть прибыли в специальный фонд для оплаты юридических консультаций в случае давления на сервис или попыток компрометации нашей политики "No Logs" в судебном порядке.
+
+Никаких логов — ваше дело ваше. Мы не ведём логи. Пользователи имеют полную свободу. Их дело — их дело.
+
+11. Изменения Политики и Канареечная гарантия (Warrant Canary)
+11.1. Уведомление об изменениях
+Мы оставляем за собой право вносить изменения в настоящую Политику конфиденциальности для отражения изменений в законодательстве или технологиях.
+• Период уведомления: Не менее 30 календарных дней до вступления изменений в силу.
+• Способ уведомления: Прямое сообщение от бота @GigabyteVPNBot.
+• Существенные изменения: Если изменения затрагивают фундаментальный принцип "Никаких логов", мы предоставим пользователям возможность бесплатного вывода средств и расторжения договора, даже если подписка была оплачена на год вперед.
+
+11.2. Неизменность принципа No Logs
+Мы публично заявляем, что Раздел 1 настоящей Политики (Наши фундаментальные обязательства) не подлежит изменению без предварительного публичного объявления о прекращении деятельности сервиса в его текущем виде.
+
+11.3. Цифровая Канарейка (Warrant Canary)
+Это публичное заявление, которое регулярно обновляется и подписывается PGP-ключом администрации.
+• Текущее заявление (на 09.04.2026):
+  - На дату публикации настоящей Политики, Gigabyte VPN НЕ ПОЛУЧАЛ национальных писем безопасности (National Security Letters), секретных судебных ордеров FISA или иных предписаний, обязывающих нас хранить данные или внедрять системы слежки.
+  - Gigabyte VPN НЕ ПРОВОДИЛ внедрение бэкдоров в программное обеспечение или серверную инфраструктуру по требованию третьих лиц.
+  - Gigabyte VPN НЕ ПЕРЕДАВАЛ ключи шифрования серверов третьим лицам.
+• Механизм действия: Если данное заявление исчезнет из Политики или не будет обновлено в течение 60 дней, это должно стать сигналом для пользователей о том, что юридический статус сервиса мог измениться под влиянием внешнего принуждения, детали которого мы не имеем права разглашать. Отсутствие обновления канарейки не означает автоматического вреда для пользователей, но служит прозрачным индикатором изменений в правовом поле вокруг сервиса.
+
+12. Связь с нами и процедура разрешения споров
+12.1. Основной канал связи
+Все вопросы, связанные с конфиденциальностью, технической поддержкой и финансами, решаются через кнопку «Поддержка» в нашем Telegram-боте. Это единственный верифицированный канал коммуникации. Мы отвечаем оперативно, обычно в течение 2-3 часов в рабочее время (CET).
+
+12.2. Официальная корреспонденция
+Для юридически значимых уведомлений (только для адвокатов и судов) доступен адрес электронной почты: legal@gigabyte-vpn.tech (PGP ключ доступен по ссылке в подписи). Обращения пользователей на этот адрес не рассматриваются — используйте бот.
+
+12.3. Досудебное урегулирование (GDPR Article 77)
+Если вы считаете, что ваши права были нарушены, пожалуйста, сначала свяжитесь с нами через бот. Мы приложим все усилия для мирного разрешения ситуации в течение 30 дней. Вы также имеете право подать жалобу в надзорный орган по защите данных вашей страны (например, в Нидерландах — Autoriteit Persoonsgegevens).
+
+12.4. Арбитражная оговорка
+Все споры, вытекающие из настоящей Политики, подлежат разрешению в Арбитражном институте Торговой палаты Стокгольма (SCC) в соответствии с его Регламентом. Место арбитража — Амстердам, Нидерланды. Язык разбирательства — английский. Данная оговорка призвана обеспечить справедливое и нейтральное разбирательство для пользователей со всего мира, исключая "домашний суд" (forum shopping).
+
+Заключительное слово
+Мы искренне благодарны вам за выбор Gigabyte VPN. В мире, где приватность становится роскошью, мы стремимся сделать её стандартом. Мы создали этот сервис, потому что сами устали от навязчивой рекламы, слежки и ограничений. Мы понимаем, что доверие нельзя купить — его можно только заслужить годами безупречной работы и честности.
+
+Каждая строчка кода, каждый байт конфигурации сервера пропитаны уважением к вашей свободе. Мы не знаем, кто вы, и не хотим знать. Мы просто хотим, чтобы интернет снова стал тем, чем он был задуман — пространством без границ и без надсмотрщиков.
+
+Никаких логов — ваше дело ваше.
+Ваша свобода важна для нас. Спасибо, что вы с нами.
+
+С уважением и искренней заботой,
+Команда Gigabyte VPN
+Дата вступления в силу: 9 апреля 2026 года`;
 
     // Условия использования
-    const fullTerms = `Условия использования сервиса Gigabyte VPN ...`;
+    const fullTerms = `Условия использования сервиса Gigabyte VPN
+
+1. Общие положения
+1.1. Настоящие Условия использования (далее — «Условия») регулируют отношения между Gigabyte VPN (далее — «Сервис») и пользователем (далее — «Пользователь»).
+1.2. Используя Сервис, Пользователь подтверждает, что ознакомлен и согласен с Условиями, а также с Политикой конфиденциальности.
+1.3. Сервис предоставляется исключительно лицам, достигшим 18 лет.
+
+2. Описание Сервиса
+2.1. Gigabyte VPN предоставляет доступ к зашифрованному VPN-туннелю на базе протокола VLESS с технологией Reality.
+2.2. Сервис работает через Telegram-бота @givpn_bot. Пользователь получает конфигурационные данные для подключения через сторонние приложения (v2rayNG, Streisand и др.).
+2.3. Сервис не предоставляет собственного клиентского приложения.
+
+3. Права и обязанности Пользователя
+3.1. Пользователь обязуется:
+- Не использовать Сервис для противоправной деятельности, включая, но не ограничиваясь: DDoS-атаки, распространение вредоносного ПО, спам, фишинг, нарушение авторских прав.
+- Не предпринимать попыток обхода ограничений, установленных Сервисом (включая блокировку BitTorrent и приватных IP-диапазонов).
+- Не передавать свои учетные данные третьим лицам.
+3.2. Пользователь имеет право:
+- Получать круглосуточный доступ к Сервису в соответствии с оплаченным тарифом.
+- Обращаться в службу поддержки через Telegram-бота.
+
+4. Оплата и возвраты
+4.1. Доступные способы оплаты: Telegram Stars и криптовалюта USDT/USDC в сети Arbitrum.
+4.2. Стоимость тарифов указана на сайте и в боте. Сервис оставляет за собой право изменять цены с предварительным уведомлением.
+4.3. Возврат средств возможен в течение 24 часов с момента оплаты, за вычетом комиссий платежных систем и сети блокчейн. Для запроса возврата необходимо обратиться в поддержку.
+4.4. При нарушении Пользователем п. 3.1 Сервис вправе приостановить или прекратить предоставление услуг без возврата средств.
+
+5. Ответственность и гарантии
+5.1. Сервис предоставляется «как есть». Gigabyte VPN не гарантирует абсолютную бесперебойность работы, однако прилагает все разумные усилия для поддержания высокой доступности.
+5.2. Сервис не несет ответственности за ущерб, возникший в результате использования или невозможности использования Сервиса, включая упущенную выгоду.
+5.3. Пользователь самостоятельно несет ответственность за конфигурацию своих устройств и безопасность учетных данных.
+
+6. Блокировка аккаунта
+6.1. Сервис оставляет за собой право заблокировать аккаунт Пользователя без предупреждения в случае выявления нарушений п. 3.1 или подозрительной активности.
+6.2. При блокировке остаток оплаченного периода не компенсируется.
+
+7. Изменение Условий
+7.1. Сервис может вносить изменения в настоящие Условия. Новая редакция вступает в силу с момента публикации на сайте и в боте.
+7.2. Продолжение использования Сервиса после изменений означает согласие с новой редакцией.
+
+8. Заключительные положения
+8.1. Настоящие Условия регулируются законодательством Нидерландов.
+8.2. Все споры подлежат разрешению в компетентном суде Амстердама, если иное не предусмотрено применимым правом.
+8.3. Признание отдельных положений Условий недействительными не влечет недействительности остальных положений.
+
+Дата вступления в силу: 9 апреля 2026 года.`;
 
     // Гарантия отсутствия логов
-    const fullNoLogs = `Гарантия отсутствия логов Gigabyte VPN ...`;
+    const fullNoLogs = `Гарантия отсутствия логов Gigabyte VPN
+
+1. Основополагающий принцип
+Gigabyte VPN категорически не ведет и не хранит никаких логов, которые могли бы идентифицировать действия пользователя в сети. Мы гарантируем, что:
+- IP-адреса (входящие и исходящие) не записываются.
+- Временные метки начала и окончания сессий не сохраняются.
+- Объем переданного трафика не учитывается.
+- DNS-запросы не логируются.
+- Содержимое трафика не анализируется и не перехватывается.
+
+2. Техническая реализация
+2.1. Серверная часть построена на Xray-core с отключенным сниффингом.
+2.2. Access-логи перенаправлены в /dev/null, что делает физически невозможным их сохранение.
+2.3. Error-логи ограничены уровнем «error» и не содержат идентифицирующей информации. Ротация логов — 7 дней с последующим уничтожением.
+2.4. Технология Reality маскирует VPN-трафик под обычный HTTPS к microsoft.com, исключая возможность анализа трафика со стороны провайдера.
+
+3. Отсутствие данных для передачи третьим лицам
+3.1. В случае получения юридически обязывающего запроса от государственных органов, Gigabyte VPN может предоставить только информацию о статусе подписки (Telegram ID, срок действия), так как никакие логи сессий не существуют.
+3.2. Мы не сотрудничаем с какими-либо организациями в целях мониторинга или сбора данных о пользователях.
+
+4. Прозрачность и аудит
+4.1. Мы стремимся к максимальной открытости: исходный код бота и конфигурации сервера могут быть предоставлены для независимого аудита по запросу.
+4.2. На 2026-2027 гг. запланирован внешний аудит безопасности с публикацией отчета.
+
+5. Политика хранения данных
+5.1. Хранятся только данные, минимально необходимые для функционирования подписки: Telegram ID, UUID клиента, срок действия.
+5.2. После истечения подписки данные удаляются в течение 30 дней.
+
+6. Ответственность
+Gigabyte VPN несет репутационную и юридическую ответственность за соблюдение данной гарантии. В случае обнаружения фактов логирования, мы обязуемся немедленно уведомить пользователей и прекратить деятельность сервиса.
+
+Никаких логов — ваше дело ваше. Мы не ведём логи. Пользователи имеют полную свободу. Их дело — их дело.
+
+Дата вступления в силу: 9 апреля 2026 года.`;
 
     const docs = {
       privacy: fullPrivacyPolicy,
