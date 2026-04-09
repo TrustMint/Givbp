@@ -18,6 +18,13 @@
 
     html {
       scroll-behavior: smooth;
+      /* Скрываем скроллбар */
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    html::-webkit-scrollbar {
+      display: none;
     }
 
     body {
@@ -26,23 +33,102 @@
       color: #E5E5E7;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      overflow-x: auto;
     }
 
-    #matrix-bg {
+    /* Фон с пятнами кода / шифрования / анонимности */
+    .bg-crypto {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
-      opacity: 0.12;
       pointer-events: none;
       font-family: inherit;
-      font-size: 14px;
-      color: #0A84FF;
-      white-space: pre;
+      font-size: 16px;
+      color: rgba(10, 132, 255, 0.25);
+      white-space: pre-wrap;
       overflow: hidden;
+    }
+
+    .bg-crypto span {
+      position: absolute;
+      display: block;
+      opacity: 0.6;
+      filter: blur(1.5px);
+      user-select: none;
+      font-weight: 500;
+    }
+
+    /* Пятна */
+    .bg-crypto .crypto1 {
+      top: 8%;
+      left: 2%;
+      font-size: 28px;
+      transform: rotate(-5deg);
+      color: #0A84FF;
+      text-shadow: 0 0 15px #0A84FF;
+    }
+    .bg-crypto .crypto2 {
+      top: 20%;
+      right: 5%;
+      font-size: 22px;
+      transform: rotate(8deg);
+      color: #5E5CE6;
+      opacity: 0.5;
+    }
+    .bg-crypto .crypto3 {
+      bottom: 15%;
+      left: 8%;
+      font-size: 32px;
+      transform: rotate(-12deg);
+      color: #0A84FF;
+      text-shadow: 0 0 20px #0A84FF;
+    }
+    .bg-crypto .crypto4 {
+      top: 45%;
+      left: 15%;
+      font-size: 18px;
+      transform: rotate(3deg);
+      color: #A0C8FF;
+    }
+    .bg-crypto .crypto5 {
+      bottom: 30%;
+      right: 10%;
+      font-size: 26px;
+      transform: rotate(-7deg);
+      color: #5E5CE6;
+      text-shadow: 0 0 15px #5E5CE6;
+    }
+    .bg-crypto .crypto6 {
+      top: 60%;
+      left: 25%;
+      font-size: 24px;
+      transform: rotate(10deg);
+      color: #0A84FF;
+    }
+    .bg-crypto .crypto7 {
+      top: 75%;
+      left: 60%;
+      font-size: 30px;
+      transform: rotate(-3deg);
+      color: #A0C8FF;
+      text-shadow: 0 0 25px #0A84FF;
+    }
+    .bg-crypto .crypto8 {
+      top: 5%;
+      left: 70%;
+      font-size: 20px;
+      transform: rotate(15deg);
+      color: #5E5CE6;
+    }
+    .bg-crypto .crypto9 {
+      bottom: 5%;
+      left: 40%;
+      font-size: 28px;
+      transform: rotate(-10deg);
+      color: #0A84FF;
     }
 
     .container {
@@ -331,13 +417,14 @@
       font-size: 0.9rem;
     }
 
-    /* Модалка */
+    /* Стеклянное модальное окно */
     .modal {
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(16px);
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       z-index: 1000;
       align-items: center;
       justify-content: center;
@@ -346,12 +433,16 @@
     .modal-content {
       max-width: 900px;
       width: 90%;
-      background: #141416;
-      border: 1px solid #2C2C30;
+      background: rgba(20, 20, 28, 0.6);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       padding: 40px;
       max-height: 85vh;
       overflow-y: auto;
       color: #D1D1D6;
+      border-radius: 16px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     }
 
     .modal-header {
@@ -401,24 +492,20 @@
       background: #0066CC;
     }
 
-    /* Адаптив */
-    @media (max-width: 900px) {
-      h1 { font-size: 3.5rem; }
-      h2 { font-size: 2.5rem; }
-      .grid-3, .grid-2 { grid-template-columns: 1fr; }
-      .hero-grid { flex-direction: column; }
-      .hero-image { flex: auto; text-align: center; }
-      .navbar { width: 95%; }
-      .nav-inner { overflow-x: auto; justify-content: flex-start; }
-      .container { padding: 0 20px; }
-      .footer-grid { 
-        grid-template-columns: 1fr 1fr; 
-        gap: 30px;
-      }
+    /* Убираем адаптивные изменения, чтобы на мобильных было как на десктопе */
+    /* Оставляем только горизонтальный скролл при необходимости */
+    body {
+      min-width: 1200px; /* чтобы не схлопывалось, можно убрать, если не нужно */
     }
 
-    @media (max-width: 480px) {
-      .footer-grid { grid-template-columns: 1fr; }
+    @media (max-width: 900px) {
+      /* Никаких изменений в раскладке — всё остается как на десктопе */
+      body {
+        min-width: 1200px;
+      }
+      .container {
+        padding: 0 40px;
+      }
     }
 
     /* Утилиты */
@@ -433,11 +520,30 @@
       0%, 100% { border-color: transparent; }
       50% { border-color: #0A84FF; }
     }
+
+    /* Для скрытия скроллбара внутри модалки */
+    .modal-content::-webkit-scrollbar {
+      display: none;
+    }
   </style>
 </head>
 <body>
 
-<canvas id="matrix-bg"></canvas>
+<!-- Фон с пятнами криптографии / шифрования / кода -->
+<div class="bg-crypto">
+  <span class="crypto1">AES-256-GCM / ChaCha20-Poly1305</span>
+  <span class="crypto2">vless://...@185.193.89.183:2096?security=reality&fp=chrome&pbk=...</span>
+  <span class="crypto3">"streamSettings": { "security": "reality" }</span>
+  <span class="crypto4">0x7a2b...f3c1 → 0x9d4e...a8b2</span>
+  <span class="crypto5">Privacy by design · Zero logs</span>
+  <span class="crypto6">> openssl enc -aes-256-cbc -in plain.txt -out cipher.bin</span>
+  <span class="crypto7">-----BEGIN RSA PRIVATE KEY-----</span>
+  <span class="crypto8">"shortIds": ["4c41f2cf", "c7", "1dea"]</span>
+  <span class="crypto9">Никаких логов — ваше дело ваше</span>
+  <!-- Дополнительные пятна -->
+  <span style="top: 33%; left: 75%; font-size: 20px; opacity:0.4; transform:rotate(-20deg); color:#0A84FF;">SHA-256 / XTLS Vision</span>
+  <span style="bottom: 20%; left: 50%; font-size: 22px; opacity:0.5; transform:rotate(5deg); color:#5E5CE6;">tls 1.3 / certificate pinning</span>
+</div>
 
 <!-- Парящая капсула -->
 <header class="navbar">
@@ -704,7 +810,7 @@
 <!-- Кнопка наверх -->
 <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
 
-<!-- Модальное окно -->
+<!-- Стеклянное модальное окно -->
 <div class="modal" id="docModal">
   <div class="modal-content">
     <div class="modal-header">
@@ -720,46 +826,6 @@
 
 <script>
   (function(){
-    // Matrix background
-    const canvas = document.getElementById('matrix-bg');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let columns, drops;
-    const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンvless://reality@microsoft.com:443?security=reality&pbk=...";
-    const fontSize = 16;
-    
-    function initMatrix() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      columns = Math.floor(width / fontSize);
-      drops = [];
-      for (let i = 0; i < columns; i++) {
-        drops[i] = Math.floor(Math.random() * -height);
-      }
-    }
-
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(10, 10, 12, 0.1)';
-      ctx.fillRect(0, 0, width, height);
-      ctx.fillStyle = '#0A84FF';
-      ctx.font = fontSize + 'px "Roboto Mono", monospace';
-      
-      for (let i = 0; i < drops.length; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      }
-    }
-
-    initMatrix();
-    setInterval(drawMatrix, 50);
-    window.addEventListener('resize', initMatrix);
-
     // Back to top
     const backBtn = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
@@ -770,12 +836,7 @@
       }
     });
 
-    // Документы
-    const modal = document.getElementById('docModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
-    const closeBtn = document.getElementById('closeModalBtn');
-
+    // Полная политика конфиденциальности (уже была)
     const fullPrivacyPolicy = `Преамбула и наши фундаментальные принципы
 Мы в Gigabyte VPN искренне благодарны вам за доверие. Ваша приватность и свобода — это не просто маркетинговый лозунг, а основа нашей архитектуры, корпоративной этики и технической философии. В эпоху, когда цифровой след человека стал предметом торговли и надзора, мы строим сервис, который возвращает вам контроль над вашей цифровой жизнью. Наш главный принцип прост, честен и неизменен: Никаких логов — ваше дело ваше.
 
@@ -1038,11 +1099,100 @@ Reality — это ключевой элемент, обеспечивающий
 Команда Gigabyte VPN
 Дата вступления в силу: 9 апреля 2026 года`;
 
+    // Подробные Условия использования
+    const fullTerms = `Условия использования сервиса Gigabyte VPN
+
+1. Общие положения
+1.1. Настоящие Условия использования (далее — «Условия») регулируют отношения между Gigabyte VPN (далее — «Сервис») и пользователем (далее — «Пользователь»).
+1.2. Используя Сервис, Пользователь подтверждает, что ознакомлен и согласен с Условиями, а также с Политикой конфиденциальности.
+1.3. Сервис предоставляется исключительно лицам, достигшим 18 лет.
+
+2. Описание Сервиса
+2.1. Gigabyte VPN предоставляет доступ к зашифрованному VPN-туннелю на базе протокола VLESS с технологией Reality.
+2.2. Сервис работает через Telegram-бота @givpn_bot. Пользователь получает конфигурационные данные для подключения через сторонние приложения (v2rayNG, Streisand и др.).
+2.3. Сервис не предоставляет собственного клиентского приложения.
+
+3. Права и обязанности Пользователя
+3.1. Пользователь обязуется:
+- Не использовать Сервис для противоправной деятельности, включая, но не ограничиваясь: DDoS-атаки, распространение вредоносного ПО, спам, фишинг, нарушение авторских прав.
+- Не предпринимать попыток обхода ограничений, установленных Сервисом (включая блокировку BitTorrent и приватных IP-диапазонов).
+- Не передавать свои учетные данные третьим лицам.
+3.2. Пользователь имеет право:
+- Получать круглосуточный доступ к Сервису в соответствии с оплаченным тарифом.
+- Обращаться в службу поддержки через Telegram-бота.
+
+4. Оплата и возвраты
+4.1. Доступные способы оплаты: Telegram Stars и криптовалюта USDT/USDC в сети Arbitrum.
+4.2. Стоимость тарифов указана на сайте и в боте. Сервис оставляет за собой право изменять цены с предварительным уведомлением.
+4.3. Возврат средств возможен в течение 24 часов с момента оплаты, за вычетом комиссий платежных систем и сети блокчейн. Для запроса возврата необходимо обратиться в поддержку.
+4.4. При нарушении Пользователем п. 3.1 Сервис вправе приостановить или прекратить предоставление услуг без возврата средств.
+
+5. Ответственность и гарантии
+5.1. Сервис предоставляется «как есть». Gigabyte VPN не гарантирует абсолютную бесперебойность работы, однако прилагает все разумные усилия для поддержания высокой доступности.
+5.2. Сервис не несет ответственности за ущерб, возникший в результате использования или невозможности использования Сервиса, включая упущенную выгоду.
+5.3. Пользователь самостоятельно несет ответственность за конфигурацию своих устройств и безопасность учетных данных.
+
+6. Блокировка аккаунта
+6.1. Сервис оставляет за собой право заблокировать аккаунт Пользователя без предупреждения в случае выявления нарушений п. 3.1 или подозрительной активности.
+6.2. При блокировке остаток оплаченного периода не компенсируется.
+
+7. Изменение Условий
+7.1. Сервис может вносить изменения в настоящие Условия. Новая редакция вступает в силу с момента публикации на сайте и в боте.
+7.2. Продолжение использования Сервиса после изменений означает согласие с новой редакцией.
+
+8. Заключительные положения
+8.1. Настоящие Условия регулируются законодательством Нидерландов.
+8.2. Все споры подлежат разрешению в компетентном суде Амстердама, если иное не предусмотрено применимым правом.
+8.3. Признание отдельных положений Условий недействительными не влечет недействительности остальных положений.
+
+Дата вступления в силу: 9 апреля 2026 года.`;
+
+    // Подробная Гарантия отсутствия логов
+    const fullNoLogs = `Гарантия отсутствия логов Gigabyte VPN
+
+1. Основополагающий принцип
+Gigabyte VPN категорически не ведет и не хранит никаких логов, которые могли бы идентифицировать действия пользователя в сети. Мы гарантируем, что:
+- IP-адреса (входящие и исходящие) не записываются.
+- Временные метки начала и окончания сессий не сохраняются.
+- Объем переданного трафика не учитывается.
+- DNS-запросы не логируются.
+- Содержимое трафика не анализируется и не перехватывается.
+
+2. Техническая реализация
+2.1. Серверная часть построена на Xray-core с отключенным сниффингом.
+2.2. Access-логи перенаправлены в /dev/null, что делает физически невозможным их сохранение.
+2.3. Error-логи ограничены уровнем «error» и не содержат идентифицирующей информации. Ротация логов — 7 дней с последующим уничтожением.
+2.4. Технология Reality маскирует VPN-трафик под обычный HTTPS к microsoft.com, исключая возможность анализа трафика со стороны провайдера.
+
+3. Отсутствие данных для передачи третьим лицам
+3.1. В случае получения юридически обязывающего запроса от государственных органов, Gigabyte VPN может предоставить только информацию о статусе подписки (Telegram ID, срок действия), так как никакие логи сессий не существуют.
+3.2. Мы не сотрудничаем с какими-либо организациями в целях мониторинга или сбора данных о пользователях.
+
+4. Прозрачность и аудит
+4.1. Мы стремимся к максимальной открытости: исходный код бота и конфигурации сервера могут быть предоставлены для независимого аудита по запросу.
+4.2. На 2026-2027 гг. запланирован внешний аудит безопасности с публикацией отчета.
+
+5. Политика хранения данных
+5.1. Хранятся только данные, минимально необходимые для функционирования подписки: Telegram ID, UUID клиента, срок действия.
+5.2. После истечения подписки данные удаляются в течение 30 дней.
+
+6. Ответственность
+Gigabyte VPN несет репутационную и юридическую ответственность за соблюдение данной гарантии. В случае обнаружения фактов логирования, мы обязуемся немедленно уведомить пользователей и прекратить деятельность сервиса.
+
+Никаких логов — ваше дело ваше. Мы не ведём логи. Пользователи имеют полную свободу. Их дело — их дело.
+
+Дата вступления в силу: 9 апреля 2026 года.`;
+
     const docs = {
       privacy: fullPrivacyPolicy,
-      terms: `<p><strong>Условия использования</strong></p><p>Запрещено: спам, DDoS, противоправные действия. Возврат в течение 24ч.</p>`,
-      nologs: `<p><strong>Гарантия отсутствия логов</strong></p><p>Access.log -> /dev/null. Sniffing отключён. Никаких данных о трафике.</p>`
+      terms: fullTerms,
+      nologs: fullNoLogs
     };
+
+    const modal = document.getElementById('docModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const closeBtn = document.getElementById('closeModalBtn');
 
     document.querySelectorAll('.doc-link').forEach(el => {
       el.addEventListener('click', e => {
