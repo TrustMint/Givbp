@@ -42,94 +42,6 @@
       overflow: hidden;
     }
 
-    /* Фоновый терминал MacBook */
-    .bg-terminal {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 1000px;
-      max-width: 90vw;
-      background: rgba(18, 18, 22, 0.55);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.9;
-      font-size: 13px;
-      padding: 20px;
-      color: #0A84FF;
-      text-shadow: 0 0 8px rgba(10, 132, 255, 0.5);
-    }
-
-    .terminal-header {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-      opacity: 0.8;
-    }
-
-    .terminal-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-
-    .dot-red { background: #FF5F56; }
-    .dot-yellow { background: #FFBD2E; }
-    .dot-green { background: #27C93F; }
-
-    .terminal-content {
-      white-space: pre-wrap;
-      line-height: 1.7;
-      font-family: inherit;
-    }
-
-    .terminal-line {
-      margin-bottom: 6px;
-    }
-
-    .prompt {
-      color: #27C93F;
-    }
-
-    .command {
-      color: #0A84FF;
-    }
-
-    .output {
-      color: #A0C8FF;
-      opacity: 0.8;
-    }
-
-    .comment {
-      color: #6C6C74;
-    }
-
-    /* Дополнительные полупрозрачные пятна */
-    .bg-crypto-spot {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.12;
-    }
-
-    .bg-crypto-spot span {
-      position: absolute;
-      display: block;
-      color: #0A84FF;
-      font-size: 20px;
-      filter: blur(2px);
-      transform: rotate(-10deg);
-    }
-
     .container {
       max-width: 1400px;
       margin: 0 auto;
@@ -297,14 +209,14 @@
     }
 
     .hero-images {
-      flex: 0 0 340px;
+      flex: 0 0 500px; /* увеличенный контейнер */
       display: flex;
-      gap: 20px;
+      gap: 24px;
       justify-content: flex-end;
     }
 
     .hero-images img {
-      width: 160px;
+      width: 240px; /* увеличено на 50% (было 160) */
       height: auto;
       border-radius: 20px;
       border: 1px solid #2C2C30;
@@ -530,36 +442,6 @@
 </head>
 <body>
 
-<!-- Фоновый терминал MacBook -->
-<div class="bg-terminal">
-  <div class="terminal-header">
-    <div class="terminal-dot dot-red"></div>
-    <div class="terminal-dot dot-yellow"></div>
-    <div class="terminal-dot dot-green"></div>
-    <span style="margin-left: 12px; color: #A0C8FF; font-size: 12px;">gigabyte@vpn-server:~/reality</span>
-  </div>
-  <div class="terminal-content">
-    <div class="terminal-line"><span class="prompt">$</span> <span class="command">openssl rand -base64 32</span></div>
-    <div class="terminal-line output">SIt_qsxheGrrbxGqV3N5btmsxmx2XrqgNS59jXM7S20</div>
-    <div class="terminal-line"><span class="prompt">$</span> <span class="command">./xray run -config config.json</span></div>
-    <div class="terminal-line output">[Info] Xray 1.8.23 started</div>
-    <div class="terminal-line output">[Info] VLESS Reality inbound listening on 0.0.0.0:2096</div>
-    <div class="terminal-line"><span class="prompt">$</span> <span class="command">python3 bot.py --sync</span></div>
-    <div class="terminal-line output">Syncing subscriptions with 3x-ui panel...</div>
-    <div class="terminal-line output">Active users: 184 | Payments pending: 3</div>
-    <div class="terminal-line"><span class="prompt">$</span> <span class="command">tail -f /var/log/xray/error.log</span></div>
-    <div class="terminal-line comment"># Logging disabled — no data saved</div>
-    <div class="terminal-line"><span class="prompt">$</span> <span class="command">echo "Никаких логов — ваше дело ваше"</span></div>
-    <div class="terminal-line output">Никаких логов — ваше дело ваше</div>
-  </div>
-</div>
-
-<!-- Дополнительные пятна -->
-<div class="bg-crypto-spot">
-  <span style="top: 10%; left: 5%;">AES-256-GCM</span>
-  <span style="bottom: 20%; right: 8%;">0x7a2b...f3c1</span>
-</div>
-
 <!-- Парящая капсула -->
 <header class="navbar">
   <div class="container">
@@ -582,7 +464,7 @@
 </header>
 
 <main>
-  <!-- Hero с двумя фото -->
+  <!-- Hero с двумя фото увеличенного размера -->
   <section class="hero">
     <div class="container">
       <div class="hero-grid">
