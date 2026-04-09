@@ -369,6 +369,9 @@
       border-radius: 28px;
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       height: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .terminal-card:hover {
       border-color: #0A84FF;
@@ -393,6 +396,9 @@
       margin-bottom: 10px;
       opacity: 0.85;
       font-size: 0.95rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .code-line .comment {
       color: #6C6C74;
@@ -437,6 +443,8 @@
       max-height: 88vh;
       overflow-y: auto;
       box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
     /* ====================== КНОПКА НАВЕРХ ====================== */
@@ -466,7 +474,7 @@
       visibility: visible;
     }
 
-    /* ====================== АДАПТИВНОСТЬ ====================== */
+    /* ====================== АДАПТИВНОСТЬ (премиальная + исправление всех переполнений) ====================== */
     @media (max-width: 1280px) {
       .navbar {
         max-width: calc(100% - 32px);
@@ -519,9 +527,28 @@
         grid-template-columns: 1fr;
         gap: 40px;
       }
+      /* ОСТРЫЕ И ПРЕМИАЛЬНЫЕ ФОРМЫ НА МОБИЛЬНЫХ — НЕ МЕНЯЕМ border-radius */
       .terminal-card {
         padding: 32px 24px;
-        border-radius: 24px;
+        border-radius: 28px; /* оставляем премиальный вид */
+      }
+      /* Защита от вылезания текста */
+      .terminal-card p,
+      .terminal-card h3,
+      .terminal-card .code-line,
+      .hero p {
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+      /* Специально для секции "Почему нет приложения" */
+      .terminal-card > div[style*="display: flex"] {
+        flex-direction: column;
+        gap: 24px;
+      }
+      .terminal-card > div[style*="display: flex"] > div {
+        border-left: none;
+        padding-left: 0;
       }
     }
 
@@ -543,6 +570,19 @@
       }
       h1 {
         font-size: clamp(2.4rem, 9vw, 3.2rem);
+      }
+      .terminal-card {
+        padding: 24px 20px;
+      }
+      .code-line {
+        font-size: 0.88rem;
+      }
+      h3 {
+        font-size: clamp(1.55rem, 4.5vw, 1.75rem);
+      }
+      /* Дополнительная защита от переполнения */
+      p, li, .code-line {
+        font-size: clamp(0.9rem, 3.5vw, 1rem);
       }
     }
 
@@ -902,7 +942,7 @@
       }
     });
 
-    // Бургер и премиум боковое меню
+    // Бургер и премиум боковое меню — полностью исправлено
     const burger = document.getElementById('burgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const closeMenu = document.getElementById('closeMenuBtn');
