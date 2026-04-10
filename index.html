@@ -134,6 +134,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: nowrap;
     }
 
     .nav-logo {
@@ -148,6 +149,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      white-space: nowrap;
     }
 
     .nav-logo img {
@@ -171,6 +173,7 @@
       transition: all 0.2s;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
@@ -180,6 +183,7 @@
 
     .nav-btn {
       border-radius: 60px !important;
+      white-space: nowrap;
     }
 
     /* Бургер-меню для мобильных */
@@ -211,7 +215,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(10, 10, 12, 0.95);
+      background: rgba(10, 10, 12, 0.98);
       backdrop-filter: blur(20px);
       z-index: 200;
       flex-direction: column;
@@ -313,6 +317,8 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 30px;
       transition: all 0.3s;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .terminal-card:hover {
@@ -337,6 +343,7 @@
       color: #0A84FF;
       margin-bottom: 8px;
       opacity: 0.8;
+      word-break: break-word;
     }
 
     .code-line .comment {
@@ -394,7 +401,7 @@
       font-size: 0.8rem;
     }
 
-    /* Стеклянное модальное окно (премиум) */
+    /* Модальное окно (премиум, с плавающим крестиком) */
     .modal {
       display: none;
       position: fixed;
@@ -415,9 +422,10 @@
     }
 
     .modal-content {
+      position: relative;
       max-width: 900px;
       width: 100%;
-      background: rgba(20, 20, 28, 0.6);
+      background: rgba(20, 20, 28, 0.8);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -436,12 +444,8 @@
     }
 
     .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-right: 40px;
     }
 
     .modal-header h3 {
@@ -452,17 +456,31 @@
     }
 
     .close-modal {
-      background: none;
-      border: none;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(20, 20, 28, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 30px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #fff;
-      font-size: 28px;
+      font-size: 24px;
       cursor: pointer;
-      transition: color 0.2s;
+      transition: all 0.2s;
       line-height: 1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .close-modal:hover {
-      color: #0A84FF;
+      background: #0A84FF;
+      color: #000;
+      border-color: #0A84FF;
     }
 
     /* Кнопка наверх */
@@ -538,7 +556,6 @@
         padding: 0 16px;
       }
 
-      /* Показываем бургер, скрываем обычные ссылки и кнопку */
       .nav-links, .nav-btn {
         display: none;
       }
@@ -595,7 +612,6 @@
         padding: 24px;
       }
 
-      /* Улучшаем центровку на мобильных */
       .hero-content {
         text-align: center;
       }
@@ -631,18 +647,28 @@
         white-space: normal;
         border-right: none;
         animation: none;
+        word-break: break-word;
       }
     }
 
     @media (max-width: 480px) {
       .nav-logo {
-        font-size: 16px;
-        padding: 6px 12px;
+        font-size: 15px;
+        padding: 6px 10px;
       }
       .btn {
-        padding: 8px 18px;
+        padding: 8px 16px;
         font-size: 0.8rem;
       }
+      .nav-links a {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+    }
+
+    /* Дополнительная защита от переполнения */
+    p, li, .code-line, .terminal-card {
+      word-break: break-word;
     }
   </style>
 </head>
@@ -685,7 +711,7 @@
 </div>
 
 <main>
-  <!-- Hero с одним фото -->
+  <!-- Hero -->
   <section class="hero">
     <div class="container">
       <div class="hero-grid">
@@ -732,6 +758,13 @@
           <h3 style="margin: 20px 0 15px; font-size: 1.8rem;">Скорость XTLS</h3>
           <p style="opacity: 0.8;">VLESS + XTLS Vision обеспечивают пропускную способность до 1 Гбит/с с минимальной задержкой.</p>
         </div>
+        <!-- Новый блок -->
+        <div class="terminal-card">
+          <div class="code-line">> crypto payment --status</div>
+          <div class="code-line comment"># USDT/USDC (Arbitrum) · Telegram Stars</div>
+          <h3 style="margin: 20px 0 15px; font-size: 1.8rem;">Анонимная оплата</h3>
+          <p style="opacity: 0.8;">Оплачивайте подписку криптовалютой или звёздами Telegram. Никаких персональных данных, никаких банков.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -765,7 +798,7 @@
       <div class="grid-3">
         <div class="terminal-card">
           <div class="code-line">> plan --name "1 месяц"</div>
-          <div style="font-size: 3rem; margin: 20px 0; font-weight: 700;">399 ₽</div>
+          <div style="font-size: 3rem; margin: 20px 0; font-weight: 700;">300 ₽</div>
           <ul style="list-style: none; margin: 25px 0;">
             <li class="code-line">> server: France (185.193.89.183:2096)</li>
             <li class="code-line">> devices: до 2</li>
@@ -775,7 +808,7 @@
         </div>
         <div class="terminal-card" style="border-color: #0A84FF;">
           <div class="code-line" style="color:#0A84FF;">> plan --name "3 месяца" --popular</div>
-          <div style="font-size: 3rem; margin: 20px 0; font-weight: 700;">999 ₽</div>
+          <div style="font-size: 3rem; margin: 20px 0; font-weight: 700;">750 ₽</div>
           <ul style="list-style: none; margin: 25px 0;">
             <li class="code-line">> server: France + новые локации</li>
             <li class="code-line">> devices: до 3</li>
@@ -785,7 +818,7 @@
         </div>
         <div class="terminal-card">
           <div class="code-line">> plan --name "6 месяцев"</div>
-          <div style="font-size: 3rem; margin: 20px 0; font-weight: 700;">1 799 ₽</div>
+          <div style="font-size: 3rem; margin: 20px 0; font-weight: 700;">1 350 ₽</div>
           <ul style="list-style: none; margin: 25px 0;">
             <li class="code-line">> server: все текущие + будущие</li>
             <li class="code-line">> devices: до 5</li>
@@ -798,30 +831,40 @@
     </div>
   </section>
 
-  <!-- Инструкции -->
+  <!-- Инструкции (сначала iOS/macOS) -->
   <section id="setup">
     <div class="container">
       <h2>// Инструкции</h2>
       <div class="grid-2">
+        <!-- iOS / macOS (первый) -->
         <div class="terminal-card">
-          <h3 style="font-size:1.8rem; margin-bottom:20px;">Android / Windows</h3>
+          <h3 style="font-size:1.8rem; margin-bottom:20px;">🍏 iOS / macOS</h3>
+          <p class="code-line">> Рекомендуемый клиент: Streisand</p>
+          <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" class="btn btn-outline" style="margin:16px 0;">Скачать для iOS / macOS</a>
+          <div style="margin-top:25px;">
+            <div class="code-line">1. Установите Streisand из App Store.</div>
+            <div class="code-line">2. В боте @givpn_bot нажмите «Личный кабинет» → скопируйте <strong>ссылку подписки</strong> (рекомендуется) или VLESS-ссылку.</div>
+            <div class="code-line comment" style="margin:8px 0;">💡 Ссылка подписки автоматически обновляет конфигурацию, вам не придётся менять ключи вручную.</div>
+            <div class="code-line">3. Откройте Streisand, нажмите на значок «+» в правом верхнем углу.</div>
+            <div class="code-line">4. Выберите «Импортировать из буфера обмена».</div>
+            <div class="code-line">5. Нажмите на кнопку подключения (переключатель). При первом запуске разрешите добавление VPN‑профиля.</div>
+            <div class="code-line" style="margin-top:16px; color:#32D74B;">✅ Вы защищены! Ваш трафик зашифрован и анонимен.</div>
+          </div>
+        </div>
+        <!-- Android / Windows (второй) -->
+        <div class="terminal-card">
+          <h3 style="font-size:1.8rem; margin-bottom:20px;">📱 Android / Windows</h3>
           <p class="code-line">> Рекомендуемый клиент: v2rayNG</p>
           <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="btn btn-outline" style="margin:16px 0;">Скачать для Android</a>
           <a href="https://github.com/2dust/v2rayNG/releases" target="_blank" class="btn btn-outline" style="margin:16px 0;">Скачать для Windows</a>
           <div style="margin-top:25px;">
-            <div class="code-line">1. Установите v2rayNG</div>
-            <div class="code-line">2. Скопируйте VLESS-ссылку из @givpn_bot</div>
-            <div class="code-line">3. Импорт из буфера → Подключиться</div>
-          </div>
-        </div>
-        <div class="terminal-card">
-          <h3 style="font-size:1.8rem; margin-bottom:20px;">iOS / macOS</h3>
-          <p class="code-line">> Рекомендуемый клиент: Streisand</p>
-          <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" class="btn btn-outline" style="margin:16px 0;">Скачать для iOS / macOS</a>
-          <div style="margin-top:25px;">
-            <div class="code-line">1. Установите Streisand из App Store</div>
-            <div class="code-line">2. Скопируйте VLESS-ссылку или отсканируйте QR</div>
-            <div class="code-line">3. Импорт → Разрешить VPN</div>
+            <div class="code-line">1. Установите v2rayNG из магазина или с GitHub.</div>
+            <div class="code-line">2. В боте @givpn_bot перейдите в «Личный кабинет» → скопируйте <strong>ссылку подписки</strong> (рекомендуется).</div>
+            <div class="code-line comment" style="margin:8px 0;">💡 Ссылка подписки позволяет автоматически получать актуальные ключи.</div>
+            <div class="code-line">3. Откройте v2rayNG, нажмите на значок «+» (или «≡» → «Импорт»).</div>
+            <div class="code-line">4. Выберите «Импорт из буфера обмена».</div>
+            <div class="code-line">5. Нажмите на кнопку подключения (иконка ракеты/зонтика).</div>
+            <div class="code-line" style="margin-top:16px; color:#32D74B;">✅ Вы защищены! Добро пожаловать в свободный интернет.</div>
           </div>
         </div>
       </div>
@@ -928,12 +971,12 @@
 <!-- Кнопка наверх -->
 <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
 
-<!-- Стеклянное модальное окно (премиум) -->
+<!-- Модальное окно -->
 <div class="modal" id="docModal">
   <div class="modal-content">
+    <button class="close-modal" id="closeModalBtn" aria-label="Закрыть">&times;</button>
     <div class="modal-header">
       <h3 id="modalTitle">Политика конфиденциальности</h3>
-      <button class="close-modal" id="closeModalBtn" aria-label="Закрыть">&times;</button>
     </div>
     <div id="modalBody" style="white-space: pre-line; font-size: 0.9rem;"></div>
   </div>
@@ -975,7 +1018,7 @@
       link.addEventListener('click', closeMenuFunc);
     });
 
-    // Полная политика конфиденциальности (сокращено для примера, но в реальности полный текст)
+    // Тексты документов (полные)
     const fullPrivacyPolicy = `Преамбула и наши фундаментальные принципы
 Мы в Gigabyte VPN искренне благодарны вам за доверие. Ваша приватность и свобода — это не просто маркетинговый лозунг, а основа нашей архитектуры, корпоративной этики и технической философии. В эпоху, когда цифровой след человека стал предметом торговли и надзора, мы строим сервис, который возвращает вам контроль над вашей цифровой жизнью. Наш главный принцип прост, честен и неизменен: Никаких логов — ваше дело ваше.
 
@@ -1238,7 +1281,6 @@ Reality — это ключевой элемент, обеспечивающий
 Команда Gigabyte VPN
 Дата вступления в силу: 9 апреля 2026 года`;
 
-    // Условия использования
     const fullTerms = `Условия использования сервиса Gigabyte VPN
 
 1. Общие положения
@@ -1286,7 +1328,6 @@ Reality — это ключевой элемент, обеспечивающий
 
 Дата вступления в силу: 9 апреля 2026 года.`;
 
-    // Гарантия отсутствия логов
     const fullNoLogs = `Гарантия отсутствия логов Gigabyte VPN
 
 1. Основополагающий принцип
@@ -1333,15 +1374,12 @@ Gigabyte VPN несет репутационную и юридическую о�
     const modalBody = document.getElementById('modalBody');
     const closeBtn = document.getElementById('closeModalBtn');
 
-    // Функция открытия модального окна с анимацией и сбросом прокрутки
     function openModal(docId) {
       modalTitle.innerText = docId === 'privacy' ? 'Политика конфиденциальности' : (docId==='terms'?'Условия использования':'Гарантия отсутствия логов');
       modalBody.innerText = docs[docId] || 'Документ в разработке';
-      // Сбрасываем прокрутку в начало
       const modalContent = modal.querySelector('.modal-content');
       if (modalContent) modalContent.scrollTop = 0;
       modal.style.display = 'flex';
-      // Принудительный reflow для анимации
       modal.offsetHeight;
       modal.classList.add('show');
       document.body.classList.add('modal-open');
@@ -1349,7 +1387,6 @@ Gigabyte VPN несет репутационную и юридическую о�
 
     function closeModal() {
       modal.classList.remove('show');
-      // Ждём окончание анимации перед скрытием
       setTimeout(() => {
         if (!modal.classList.contains('show')) {
           modal.style.display = 'none';
@@ -1371,7 +1408,6 @@ Gigabyte VPN несет репутационную и юридическую о�
       if (e.target === modal) closeModal();
     });
 
-    // Закрытие по Escape
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && modal.classList.contains('show')) {
         closeModal();
